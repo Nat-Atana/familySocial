@@ -22,6 +22,6 @@ export const people = [
 export const relationships = [
   ['grandfather','grandmother','family'],['grandfather','father','family'],['grandmother','mother','family'],
   ['father','mother','family'],['father','you','family'],['mother','you','family'],['uncle','father','family'],
-  ['uncle','aunt','extended'],['aunt','you','extended'],['sister','you','family'],['bestFriend','you','friend'],
+  ['uncle','aunt','extended'],['aunt','you','family'],['sister','you','family'],['bestFriend','you','friend'],
   ['collegeFriend','you','friend'],['you','spouse','spouse'],['spouse','daughter','child'],['spouse','son','child'],
 ].map(([from,to,type]) => ({from,to,type}))

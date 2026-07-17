@@ -5,7 +5,63 @@
 .highlights h2{margin:0 0 15px;font-size:14px;line-height:20px;font-weight:600;white-space:nowrap}
 .stat-icon svg{display:block;transform-origin:center}
 .stat-icon.family svg,.stat-icon.friend svg{width:32px;height:32px;transform:translate(1px,1px) scale(1)}
-.stat-icon.family .family-people-icon{fill:currentColor;stroke:none;transform:none}
 .stat-icon.community svg{width:32px;height:32px;transform:translateY(1px) scale(1)}
 .stat-icon.total svg{transform:translate(.5px,.5px)}
 @media(max-width:800px){.highlights{padding:20px 26px 18px}}
+
+/* Consistent icon-library sizing and centering */
+.stat-icon{display:flex;align-items:center;justify-content:center;overflow:hidden}
+.stat-icon svg,.stat-icon.family svg,.stat-icon.friend svg,.stat-icon.community svg,.stat-icon.total svg{display:block;width:32px;height:32px;max-width:none;max-height:none;transform:none;transform-origin:center}
+
+.privacy p{margin-top:6px;font-size:14px;line-height:1.55;white-space:nowrap}
+
+.graph-frame{display:contents}
+.person{cursor:pointer;outline:none;transition:transform .18s ease}.person img{transition:box-shadow .18s ease,transform .18s ease}.person:hover img,.person:focus-visible img{transform:scale(1.04)}.person.selected img{transform:scale(1.06);box-shadow:0 0 0 6px color-mix(in srgb,var(--ring) 22%,transparent),0 7px 20px rgba(20,20,35,.2)}.person:focus-visible img{box-shadow:0 0 0 4px rgba(17,105,217,.22)}
+.person img{width:88px;height:88px;min-width:88px;min-height:88px;max-width:88px;max-height:88px;flex:0 0 88px;aspect-ratio:1/1;object-fit:cover;object-position:center;border-radius:50%;clip-path:circle(50% at 50% 50%)}
+.person.you img{width:156px;height:156px;min-width:156px;min-height:156px;max-width:156px;max-height:156px;flex-basis:156px;aspect-ratio:1/1}
+.stat-icon.family svg,.stat-icon.friend svg,.stat-icon.community svg,.stat-icon.total svg{width:34px;height:34px;transform:none}
+.stat-icon.total svg{transform:translateY(7px)}
+.stat-icon{--tile-size:clamp(40px,calc(36px + 1vw),45px);width:var(--tile-size)!important;height:var(--tile-size)!important;inline-size:var(--tile-size)!important;block-size:var(--tile-size)!important;min-width:var(--tile-size);min-height:var(--tile-size);max-width:var(--tile-size);max-height:var(--tile-size);flex:0 0 var(--tile-size)}
+.stat-icon.family svg,.stat-icon.friend svg,.stat-icon.community svg,.stat-icon.total svg{width:calc(var(--tile-size)*.68);height:calc(var(--tile-size)*.68)}
+.stat-icon.total svg{transform:translateY(calc(var(--tile-size)*.12))}
+
+/* Responsive icon tiles: one source of truth, no padding */
+.stat-icon{--tile-size:clamp(40px,calc(36px + 1vw),45px);--glyph-size:calc(var(--tile-size)*.72);box-sizing:border-box;width:var(--tile-size)!important;height:var(--tile-size)!important;inline-size:var(--tile-size)!important;block-size:var(--tile-size)!important;min-width:var(--tile-size);min-height:var(--tile-size);max-width:var(--tile-size);max-height:var(--tile-size);flex:0 0 var(--tile-size);padding:0!important;display:flex;align-items:center;justify-content:center}
+.stat-icon svg,.stat-icon.family svg,.stat-icon.friend svg,.stat-icon.community svg,.stat-icon.total svg{box-sizing:border-box;width:var(--glyph-size)!important;height:var(--glyph-size)!important;padding:0!important;margin:0;transform:none}
+.stat-icon{position:relative}
+.stat-icon svg,.stat-icon.family svg,.stat-icon.friend svg,.stat-icon.community svg,.stat-icon.total svg{position:absolute!important;top:50%;left:50%;display:block;transform:translate(-50%,-50%)!important;transform-origin:center}
+.stat-icon{width:40px;height:40px;min-width:40px;min-height:40px;max-width:40px;max-height:40px;flex:0 0 40px;aspect-ratio:1/1;padding:0}
+.stat-icon{position:relative;isolation:isolate;background:transparent!important}
+.stat-icon::before{content:"";position:absolute;z-index:-1;inset:0;width:40px;height:40px;border-radius:5px}
+.stat-icon.family::before{background:#f3effa}.stat-icon.friend::before{background:#edf3fb}.stat-icon.community::before{background:#edf5f5}.stat-icon.total::before{background:#f0f0f2}
+.stat-icon svg{position:relative;z-index:1}
+.stat-icon{inline-size:40px!important;block-size:40px!important;border-radius:4px!important}
+.stat-icon::before{display:none}
+.stat-icon.family{background:#f3effa!important}.stat-icon.friend{background:#edf3fb!important}.stat-icon.community{background:#edf5f5!important}.stat-icon.total{background:#f0f0f2!important}
+.stat-icon{width:50px!important;height:50px!important;inline-size:50px!important;block-size:50px!important;min-width:50px;min-height:50px;max-width:50px;max-height:50px;flex:0 0 50px}
+@media(max-width:800px){
+  html,body,#root{width:100%;max-width:100%;overflow-x:hidden}
+  main{display:flex;width:100%;min-height:100vh;padding:30px 18px;flex-direction:column;align-items:stretch;overflow:hidden}
+  header{position:relative;inset:auto;order:1;width:100%}
+  header h1{font-size:clamp(38px,10vw,54px);line-height:1.08;letter-spacing:-1.8px}
+  header p{margin-top:15px;font-size:clamp(14px,3.8vw,18px);line-height:1.4}
+  .intro{position:relative;inset:auto;order:2;width:100%;height:auto;min-height:112px;margin-top:32px;padding:20px;gap:20px;border:1px solid #eef0f4;border-radius:14px}
+  .intro div{font-size:clamp(14px,3.7vw,16px);white-space:normal}
+  .network-icon{width:56px;height:56px}
+  .highlights{position:relative;inset:auto;order:3;width:100%;height:auto;margin-top:24px;padding:20px 26px 18px}
+  .stat{height:76px}
+  .graph-frame{position:relative;display:block;order:4;width:min(760px,100%);height:min(900px,calc((100vw - 36px)*1.18421));margin:38px auto 0;flex:none}
+  .graph-frame .social-graph{position:absolute;top:0;left:50%;width:760px;height:900px;margin:0;transform:translateX(-50%) scale(min(1,calc((100vw - 36px)/760px)));transform-origin:top center}
+  .privacy{position:relative;inset:auto;order:5;width:100%;height:auto;min-height:132px;margin-top:28px;padding:21px 20px}
+  .privacy p{white-space:normal}
+  .legend{position:relative;inset:auto;order:6;width:100%;height:auto;margin:28px 0 0;padding:22px 25px}
+  .legend>div{grid-template-columns:1fr 1fr;column-gap:20px}
+}
+@media(max-width:520px){
+  main{padding:25px 14px}
+  header h1{font-size:40px}
+  .intro{gap:14px;padding:17px 15px}.network-icon{width:50px;height:50px}
+  .graph-frame{height:calc((100vw - 28px)*1.18421)}
+  .graph-frame .social-graph{transform:translateX(-50%) scale(calc((100vw - 28px)/760px))}
+  .legend>div{display:flex;flex-direction:column;gap:17px}
+}
