@@ -101,13 +101,19 @@ People are defined in `src/data.js`. Each person includes an ID, display name, g
 }
 ```
 
-Relationships reference people by ID:
+Relationships are objects that reference graph nodes by ID. Each relationship also has a unique ID and a type:
 
 ```js
-['father', 'you', 'family']
+{
+  id: 'father-you',
+  source: 'father',
+  target: 'you',
+  type: 'family',
+  sourceHandle: 'diagonal-right'
+}
 ```
 
-The relationship type determines the edge color and whether the line is solid or dashed.
+The relationship type determines the edge color and whether the line is solid or dashed. The optional `sourceHandle` selects a specific connection point when an edge needs custom routing. Relationships that should originate from the center source handle can use `centered: true`.
 
 ## Customization
 
@@ -148,6 +154,24 @@ npm run build
 ```
 
 Deploy the contents of `dist/` to a static host such as GitHub Pages, Netlify, Vercel, or Cloudflare Pages.
+
+The `dist/` directory is generated output and can be recreated at any time with `npm run build`. It does not need to be committed unless your hosting workflow explicitly deploys build artifacts from the repository.
+
+## Quality Checks
+
+Run the graph integrity tests:
+
+```bash
+npm test
+```
+
+Verify that the application produces a successful production build:
+
+```bash
+npm run build
+```
+
+The tests validate node references, relationship types, generated node and edge counts, and explicit source-handle routing.
 
 ## Notes
 
