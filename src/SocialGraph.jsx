@@ -5,6 +5,7 @@ import PersonNode from './graph/PersonNode'
 import { createGraphEdges, createGraphNodes, keepGraphConnected } from './graph/graphBuilder'
 
 const nodeTypes = { person: PersonNode, junction: JunctionNode }
+const graphExtent = [[0, 0], [760, 900]]
 
 export default function SocialGraph() {
   const [selectedId, setSelectedId] = useState(null)
@@ -39,6 +40,8 @@ export default function SocialGraph() {
         defaultViewport={{ x: 0, y: 0, zoom: 1 }}
         minZoom={1}
         maxZoom={1}
+        nodeExtent={graphExtent}
+        translateExtent={graphExtent}
         nodesDraggable
         autoPanOnNodeDrag={false}
         panOnDrag={false}

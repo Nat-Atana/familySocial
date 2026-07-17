@@ -28,6 +28,7 @@ body { margin: 0; min-width: 320px; }
 .person-handle { top: var(--avatar-center-y) !important; }
 .diagonal-right-handle { left: calc(50% + 10px) !important; }
 .diagonal-left-handle { left: calc(50% - 10px) !important; }
+.react-flow__node-person { touch-action: none; }
 
 .react-flow__node { z-index: 2 !important; }
 .react-flow__edges { z-index: 0 !important; }
@@ -64,16 +65,16 @@ body { margin: 0; min-width: 320px; }
   .graph-frame > section {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%) scale(min(1, calc((100vw - 36px) / 760px)));
-    transform-origin: top center;
+    left: 0;
+    transform: scale(min(1, calc((100vw - 36px) / 760px)));
+    transform-origin: top left;
   }
 }
 
 @media (max-width: 520px) {
   .graph-frame { height: calc((100vw - 36px) * 1.18421); }
   .graph-frame > section {
-    transform: translateX(-50%) scale(calc((100vw - 36px) / 760px)) translateX(-70px);
+    transform: scale(calc((100vw - 36px) / 760px));
   }
 }
 
