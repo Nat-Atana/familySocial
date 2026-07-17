@@ -9,6 +9,7 @@ A responsive family-network visualization built with React Flow and Tailwind CSS
 - Solid and dashed SVG connection lines
 - Responsive layouts for desktop, tablet, and mobile devices
 - Circular profile photos with consistent colored borders
+- Draggable avatars constrained to the visible graph canvas
 - Clickable avatars with visual selection highlighting
 - Keyboard-accessible avatar selection using Enter or Space
 - Connection statistics, privacy information, and relationship legend
@@ -172,6 +173,18 @@ npm run build
 ```
 
 The tests validate node references, relationship types, generated node and edge counts, and explicit source-handle routing.
+
+## Testing Avatar Interaction
+
+Each avatar can be repositioned temporarily by dragging it within the graph canvas:
+
+1. Start the application with `npm run dev`.
+2. Press and hold an avatar, then drag it in any direction.
+3. Confirm that its relationship edges follow the avatar while it moves.
+4. Drag a parent or grandparent and confirm that the connected routing junction remains aligned.
+5. Drag an avatar toward each edge of the canvas and confirm that it stays fully visible. The graph viewport should not pan or become inaccessible.
+
+Dragging changes only the current in-memory layout. Refreshing the page restores the positions defined in `src/data.js`. Clicking an avatar without dragging it toggles its selection highlight.
 
 ## Notes
 

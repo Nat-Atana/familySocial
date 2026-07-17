@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { ReactFlow, useNodesState } from '@xyflow/react'
+import { applyNodeChanges, ReactFlow, useNodesState } from '@xyflow/react'
 import JunctionNode from './graph/JunctionNode'
 import PersonNode from './graph/PersonNode'
-import { createGraphEdges, createGraphNodes } from './graph/graphBuilder'
+import { createGraphEdges, createGraphNodes, keepGraphConnected } from './graph/graphBuilder'
 
 const nodeTypes = { person: PersonNode, junction: JunctionNode }
 
@@ -13,7 +13,11 @@ export default function SocialGraph() {
   }, [])
   const initialNodes = useMemo(() => createGraphNodes(handleSelect), [handleSelect])
   const edges = useMemo(() => createGraphEdges(), [])
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
+  const [nodes, setNodes] = useNodesState(initialNodes)
+
+  const onNodesChange = useCallback((changes) => {
+    setNodes((currentNodes) => keepGraphConnected(applyNodeChanges(changes, currentNodes)))
+  }, [setNodes])
 
   useEffect(() => {
     setNodes((currentNodes) => currentNodes.map((node) => (
@@ -36,6 +40,7 @@ export default function SocialGraph() {
         minZoom={1}
         maxZoom={1}
         nodesDraggable
+        autoPanOnNodeDrag={false}
         panOnDrag={false}
         zoomOnScroll={false}
         zoomOnPinch={false}
